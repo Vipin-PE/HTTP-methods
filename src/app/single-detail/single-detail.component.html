@@ -1,0 +1,7 @@
+<input type="number" [(ngModel)]="detailId" placeholder="Id">
+<button (click)="getDetailById()">Get Details</button>
+
+<div *ngIf="detail">
+  <p>Name: {{ detail.name }}</p>
+  <p>Email: {{ detail.email }}</p>
+</div>

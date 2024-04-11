@@ -1,0 +1,6 @@
+<button (click)="getAllDetails()">Get All Details</button>
+<div *ngFor="let detail of allDetails">
+  <p>Name: {{ detail.name }}</p>
+  <p>Email: {{ detail.email }}</p>
+  <hr>
+</div>
