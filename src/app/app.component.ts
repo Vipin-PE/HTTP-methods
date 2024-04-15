@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { DetailsService } from './details.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   recordForm!: FormGroup;
   responseText: string = '';
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(private formBuilder: FormBuilder, private detailsService: DetailsService) {}
 
   ngOnInit(): void {
     this.recordForm = this.formBuilder.group({
@@ -23,7 +23,16 @@ export class AppComponent implements OnInit {
   onSubmit(): void {
     if (this.recordForm.valid) {
       const formData = this.recordForm.value;
-      this.responseText = `Name: ${formData.name}\nEmail: ${formData.email}`;
+      this.detailsService.createRecord(formData).subscribe(
+        (response) => {
+          console.log(response);
+          this.responseText = `Saved successfully!`;
+        },
+        (error) => {
+          console.error(error);
+          this.responseText = `Error occurred while saving record.`;
+        }
+      );
     }
   }
 }

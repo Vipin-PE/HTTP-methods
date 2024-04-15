@@ -17,8 +17,20 @@ export class DetailsService {
   getDetailById(id: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
-  
+
   createRecord(data: any): Observable<any> {
     return this.http.post<any>(this.baseUrl, data);
+  }
+
+  updateRecord(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/${id}`, data);
+  }
+
+  deleteRecord(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/${id}`);
+  }
+
+  patchRecord(id: number, data: any): Observable<any> {
+    return this.http.patch<any>(`${this.baseUrl}/${id}`, data);
   }
 }

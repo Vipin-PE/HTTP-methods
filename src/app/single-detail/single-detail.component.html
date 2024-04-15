@@ -4,4 +4,7 @@
 <div *ngIf="detail">
   <p>Name: {{ detail.name }}</p>
   <p>Email: {{ detail.email }}</p>
+  <button (click)="updateDetail()">Update</button>
+  <button (click)="patchDetail()">Patch</button>
+  <button (click)="deleteDetail()">Delete</button>
 </div>
